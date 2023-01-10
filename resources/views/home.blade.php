@@ -22,23 +22,23 @@
                     {{ __('You are logged in!') }}
                 </div>
                 <div class="card-body">
-                    <div class="d-flex flex-row p-5">
+                    <div class="d-flex flex-row p-2">
                         @forelse ( $cours as $cour )
                         <div class="card d-flex flex-column p-2 w-100 m-2">
                             <div class="d-flex flex-column w-100">
-                                <img src="{{ asset($cour->imgpath) }}" class="card m-2" width="200px" height="200px" alt="">
+                                <img src="{{ asset($cour->imgpath) }}" class="card mb-2"  height="200px" alt="">
                                 <h4>{{ $cour->titre }}</h4>
                                 <p>{{ $cour->description }}</p>
 
                             </div>
                             <div class="d-flex flex-row justify-content-between">
                                 <h4>{{ $cour->formateur->nom }}</h4>
-                                <span>{{ $cour->prix }}</span>
+                                <span class="text-danger">${{ $cour->prix }}</span>
                             </div>
                             <form action="{{ route("cour.destroy",["cour"=> $cour->id]) }}" method="POST">
                                 @csrf
                                 @method('DELETE')
-                                <button class="dropdown-item text-danger delete-record">Delete</button>
+                                <button class="btn btn-danger">Delete</button>
                             </form>
                         </div>
                         @empty
